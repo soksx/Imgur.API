@@ -1,11 +1,11 @@
-﻿namespace Imgur.API
-{
-    using System;
-    using System.IO;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading.Tasks;
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
+namespace Imgur.API
+{
     internal class ProgressStreamContent : HttpContent
     {
         private const int _defaultBufferSize = 4096;

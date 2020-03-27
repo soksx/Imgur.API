@@ -1,4 +1,5 @@
 ﻿using Imgur.API.Authentication;
+using Imgur.API.Enums;
 using Imgur.API.Models;
 using Imgur.API.RequestBuilders;
 using System;
@@ -441,6 +442,64 @@ namespace Imgur.API.Endpoints
             const string url = nameof(image);
 
             using (var request = ImageRequestBuilder.UploadImageUrlRequest(url, image, albumId, name, title, description))
+            {
+                var returnImage = await SendRequestAsync<Image>(request).ConfigureAwait(false);
+                return returnImage;
+            }
+        }
+        /// <summary>
+        ///     Upload a new image using a URL.
+        /// </summary>
+        /// <param name="upload">The Stream file of the image/video.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="fileType">The Filetype (image/video).</param>
+        /// <param name="albumId">
+        ///     The id of the album you want to add the image to. For anonymous albums, {albumId} should be the
+        ///     deletehash that is returned at creation.
+        /// </param>
+        /// <param name="name">The name of the file.</param>
+        /// <param name="title">The title of the image.</param>
+        /// <param name="description">The description of the image.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when a null reference is passed to a method that does not accept it as a
+        ///     valid argument.
+        /// </exception>
+        /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
+        /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
+        public Task<IImage> UploadFileAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null, string description = null)
+        {
+            if (upload == null)
+            {
+                throw new ArgumentNullException(nameof(upload));
+            }
+
+            return UploadFileInternalAsync(upload, fileName, fileType, albumId, name, title, description);
+        }
+        /// <summary>
+        ///     Upload a new image using a URL.
+        /// </summary>
+        /// <param name="upload">The Stream file of the image/video.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="fileType">The Filetype (image/video).</param>
+        /// <param name="albumId">
+        ///     The id of the album you want to add the image to. For anonymous albums, {albumId} should be the
+        ///     deletehash that is returned at creation.
+        /// </param>
+        /// <param name="name">The name of the file.</param>
+        /// <param name="title">The title of the image.</param>
+        /// <param name="description">The description of the image.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when a null reference is passed to a method that does not accept it as a
+        ///     valid argument.
+        /// </exception>
+        /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
+        /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
+        /// <returns></returns>
+        private async Task<IImage> UploadFileInternalAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null, string description = null)
+        {
+            const string url = nameof(upload);
+
+            using (var request = ImageRequestBuilder.UploadFileRequest(url, upload, fileName, fileType, albumId, name, title, description))
             {
                 var returnImage = await SendRequestAsync<Image>(request).ConfigureAwait(false);
                 return returnImage;

@@ -1,4 +1,5 @@
-﻿using Imgur.API.Models;
+﻿using Imgur.API.Enums;
+using Imgur.API.Models;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -88,6 +89,23 @@ namespace Imgur.API.Endpoints
         /// <param name="description">The description of the image.</param>
         /// <returns></returns>
         Task<IImage> UploadImageUrlAsync(string image, string albumId = null, string name = null, string title = null,
+            string description = null);
+
+        /// <summary>
+        ///     Upload a new image using a URL.
+        /// </summary>
+        /// <param name="upload">The Stream of the image/video.</param>
+        /// <param name="fileName">Name of the file</param>
+        /// <param name="fileType">The FileType of the image/video.</param>
+        /// <param name="albumId">
+        ///     The id of the album you want to add the image to. For anonymous albums, {albumId} should be the
+        ///     deletehash that is returned at creation.
+        /// </param>
+        /// <param name="name">The name of the file.</param>
+        /// <param name="title">The title of the image.</param>
+        /// <param name="description">The description of the image.</param>
+        /// <returns></returns>
+        Task<IImage> UploadFileAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null,
             string description = null);
     }
 }

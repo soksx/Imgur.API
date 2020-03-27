@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Imgur.API.Enums;
+using Imgur.API.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -179,6 +181,58 @@ namespace Imgur.API.RequestBuilders
             var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
                 Content = new FormUrlEncodedContent(parameters.ToArray())
+            };
+
+            return request;
+        }
+
+        internal static HttpRequestMessage UploadFileRequest(string url, Stream stream, string fileName, FileType fileType = FileType.Image, string albumId = null,
+            string name = null, string title = null, string description = null)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
+            if (stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            var content = new MultipartFormDataContent($"{DateTime.UtcNow.Ticks}")
+            {
+                {new StringContent("file"), "type"},
+                {new StreamContent(stream), fileType.ToLowerCase(), fileName}
+            };
+
+            if (!string.IsNullOrWhiteSpace(albumId))
+            {
+                content.Add(new StringContent(albumId), "album");
+            }
+
+            if (name != null)
+            {
+                content.Add(new StringContent(name), nameof(name));
+            }
+
+            if (title != null)
+            {
+                content.Add(new StringContent(title), nameof(title));
+            }
+
+            if (description != null)
+            {
+                content.Add(new StringContent(description), nameof(description));
+            }
+
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = content
             };
 
             return request;

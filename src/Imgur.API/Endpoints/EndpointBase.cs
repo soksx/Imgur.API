@@ -177,7 +177,7 @@ namespace Imgur.API.Endpoints
             }
 
             //If an error occurs, throw an exception
-            if (stringResponse.StartsWith("{\"data\":{\"error\":"))
+            if (stringResponse.StartsWith("{\"data\":{\"error\":\""))
             {
                 dynamic jsonResponse = JObject.Parse(stringResponse);
                 if (stringResponse.Contains("{\"message\":"))

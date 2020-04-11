@@ -13,6 +13,6 @@ namespace Imgur.API.Endpoints
         /// </summary>
         /// <param name="vidUrl">Video url to convert to GIF</param>
         /// <returns></returns>
-        Task<IVidToGIF> ConvertVidToGIF(string vidUrl);
+        ValueTask<IVidToGIF> ConvertVidToGIF(string vidUrl);
     }
 }

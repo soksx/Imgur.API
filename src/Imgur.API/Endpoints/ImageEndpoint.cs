@@ -45,7 +45,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<bool> DeleteImageAsync(string imageId)
+        public ValueTask<bool> DeleteImageAsync(string imageId)
         {
             if (string.IsNullOrWhiteSpace(imageId))
             {
@@ -67,7 +67,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<bool> DeleteImageInternalAsync(string imageId)
+        private async ValueTask<bool> DeleteImageInternalAsync(string imageId)
         {
             var url = $"image/{imageId}";
 
@@ -89,7 +89,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<bool> FavoriteImageAsync(string imageId)
+        public ValueTask<bool> FavoriteImageAsync(string imageId)
         {
             if (string.IsNullOrWhiteSpace(imageId))
             {
@@ -115,7 +115,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<bool> FavoriteImageInternalAsync(string imageId)
+        private async ValueTask<bool> FavoriteImageInternalAsync(string imageId)
         {
             var url = $"image/{imageId}/favorite";
 
@@ -137,7 +137,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<IImage> GetImageAsync(string imageId)
+        public ValueTask<IImage> GetImageAsync(string imageId)
         {
             if (string.IsNullOrWhiteSpace(imageId))
             {
@@ -158,7 +158,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<IImage> GetImageInternalAsync(string imageId)
+        private async ValueTask<IImage> GetImageInternalAsync(string imageId)
         {
             var url = $"image/{imageId}";
 
@@ -182,7 +182,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<bool> UpdateImageAsync(string imageId)
+        public ValueTask<bool> UpdateImageAsync(string imageId)
         {
             if (string.IsNullOrWhiteSpace(imageId))
             {
@@ -206,7 +206,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<bool> UpdateImageAsync(string imageId, string title)
+        public ValueTask<bool> UpdateImageAsync(string imageId, string title)
         {
             if (string.IsNullOrWhiteSpace(imageId))
             {
@@ -231,7 +231,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<bool> UpdateImageAsync(string imageId, string title, string description)
+        public ValueTask<bool> UpdateImageAsync(string imageId, string title, string description)
         {
             if (string.IsNullOrWhiteSpace(imageId))
             {
@@ -256,7 +256,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<bool> UpdateImageInternalAsync(string imageId, string title = null, string description = null)
+        private async ValueTask<bool> UpdateImageInternalAsync(string imageId, string title = null, string description = null)
         {
             var url = $"image/{imageId}";
 
@@ -285,7 +285,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<IImage> UploadImageBinaryAsync(byte[] image, string albumId = null, string name = null, string title = null,
+        public ValueTask<IImage> UploadImageBinaryAsync(byte[] image, string albumId = null, string name = null, string title = null,
             string description = null)
         {
             if (image == null)
@@ -314,7 +314,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<IImage> UploadImageBinaryInternalAsync(byte[] image, string albumId = null, string name = null, string title = null,
+        private async ValueTask<IImage> UploadImageBinaryInternalAsync(byte[] image, string albumId = null, string name = null, string title = null,
             string description = null)
         {
             const string url = nameof(image);
@@ -346,7 +346,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<IImage> UploadImageStreamAsync(Stream image, string albumId = null, string name = null, string title = null,
+        public ValueTask<IImage> UploadImageStreamAsync(Stream image, string albumId = null, string name = null, string title = null,
             string description = null, IProgress<int> progressBytes = null, int progressBufferSize = 4096)
         {
             if (image == null)
@@ -377,7 +377,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<IImage> UploadImageStreamInternalAsync(Stream image, string albumId = null, string name = null, string title = null,
+        private async ValueTask<IImage> UploadImageStreamInternalAsync(Stream image, string albumId = null, string name = null, string title = null,
             string description = null, IProgress<int> progressBytes = null, int progressBufferSize = 4096)
         {
             const string url = nameof(image);
@@ -407,7 +407,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        public Task<IImage> UploadImageUrlAsync(string image, string albumId = null, string name = null, string title = null,
+        public ValueTask<IImage> UploadImageUrlAsync(string image, string albumId = null, string name = null, string title = null,
             string description = null)
         {
             if (string.IsNullOrWhiteSpace(image))
@@ -436,7 +436,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<IImage> UploadImageUrlInternalAsync(string image, string albumId = null, string name = null, string title = null,
+        private async ValueTask<IImage> UploadImageUrlInternalAsync(string image, string albumId = null, string name = null, string title = null,
             string description = null)
         {
             const string url = nameof(image);
@@ -466,7 +466,7 @@ namespace Imgur.API.Endpoints
         /// </exception>
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
-        public Task<IImage> UploadFileAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null, string description = null)
+        public ValueTask<IImage> UploadFileAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null, string description = null)
         {
             if (upload == null)
             {
@@ -495,7 +495,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <returns></returns>
-        private async Task<IImage> UploadFileInternalAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null, string description = null)
+        private async ValueTask<IImage> UploadFileInternalAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null, string description = null)
         {
             const string url = nameof(upload);
 

@@ -12,6 +12,6 @@ namespace Imgur.API.Endpoints
         ///     Gets remaining credits for the application.
         /// </summary>
         /// <returns></returns>
-        Task<IRateLimit> GetRateLimitAsync();
+        ValueTask<IRateLimit> GetRateLimitAsync();
     }
 }

@@ -236,7 +236,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <returns></returns>
-        internal virtual Task<T> SendRequestAsync<T>(HttpRequestMessage message)
+        internal virtual ValueTask<T> SendRequestAsync<T>(HttpRequestMessage message)
         {
             if (message == null)
             {
@@ -257,7 +257,7 @@ namespace Imgur.API.Endpoints
         /// <exception cref="MashapeException">Thrown when an error is found in a response from a Mashape endpoint.</exception>
         /// <exception cref="ImgurException">Thrown when an error is found in a response from an Imgur endpoint.</exception>
         /// <returns></returns>
-        internal virtual async Task<T> SendRequestInternalAsync<T>(HttpRequestMessage message)
+        internal virtual async ValueTask<T> SendRequestInternalAsync<T>(HttpRequestMessage message)
         {
             var httpResponse = await HttpClient.SendAsync(message).ConfigureAwait(false);
 

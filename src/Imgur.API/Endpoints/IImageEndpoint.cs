@@ -17,21 +17,21 @@ namespace Imgur.API.Endpoints
         /// </summary>
         /// <param name="imageId">The image id.</param>
         /// <returns></returns>
-        Task<bool> DeleteImageAsync(string imageId);
+        ValueTask<bool> DeleteImageAsync(string imageId);
 
         /// <summary>
         ///     Favorite an image with the given ID. OAuth authentication required.
         /// </summary>
         /// <param name="imageId">The image id.</param>
         /// <returns></returns>
-        Task<bool> FavoriteImageAsync(string imageId);
+        ValueTask<bool> FavoriteImageAsync(string imageId);
 
         /// <summary>
         ///     Get information about an image.
         /// </summary>
         /// <param name="imageId">The image id.</param>
         /// <returns></returns>
-        Task<IImage> GetImageAsync(string imageId);
+        ValueTask<IImage> GetImageAsync(string imageId);
 
         /// <summary>
         ///     Updates the title or description of an image.
@@ -42,7 +42,7 @@ namespace Imgur.API.Endpoints
         /// <param name="title">The title of the image.</param>
         /// <param name="description">The description of the image.</param>
         /// <returns></returns>
-        Task<bool> UpdateImageAsync(string imageId, string title = null, string description = null);
+        ValueTask<bool> UpdateImageAsync(string imageId, string title = null, string description = null);
 
         /// <summary>
         ///     Upload a new image using a binary file.
@@ -56,7 +56,7 @@ namespace Imgur.API.Endpoints
         /// <param name="title">The title of the image.</param>
         /// <param name="description">The description of the image.</param>
         /// <returns></returns>
-        Task<IImage> UploadImageBinaryAsync(byte[] image, string albumId = null, string name = null, string title = null,
+        ValueTask<IImage> UploadImageBinaryAsync(byte[] image, string albumId = null, string name = null, string title = null,
             string description = null);
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Imgur.API.Endpoints
         /// <param name="progressBytes">A provider for progress updates.</param>
         /// <param name="progressBufferSize">The amount of bytes that should be uploaded while performing a progress upload.</param>
         /// <returns></returns>
-        Task<IImage> UploadImageStreamAsync(Stream image, string albumId = null, string name = null, string title = null,
+        ValueTask<IImage> UploadImageStreamAsync(Stream image, string albumId = null, string name = null, string title = null,
             string description = null, IProgress<int> progressBytes = null, int progressBufferSize = 4096);
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Imgur.API.Endpoints
         /// <param name="title">The title of the image.</param>
         /// <param name="description">The description of the image.</param>
         /// <returns></returns>
-        Task<IImage> UploadImageUrlAsync(string image, string albumId = null, string name = null, string title = null,
+        ValueTask<IImage> UploadImageUrlAsync(string image, string albumId = null, string name = null, string title = null,
             string description = null);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Imgur.API.Endpoints
         /// <param name="title">The title of the image.</param>
         /// <param name="description">The description of the image.</param>
         /// <returns></returns>
-        Task<IImage> UploadFileAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null,
+        ValueTask<IImage> UploadFileAsync(Stream upload, string fileName, FileType fileType = FileType.Image, string albumId = null, string name = null, string title = null,
             string description = null);
     }
 }

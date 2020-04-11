@@ -35,7 +35,7 @@ namespace Imgur.API.Endpoints
         /// </summary>
         /// <param name="vidUrl">Video url to convert to GIF</param>
         /// <returns></returns>
-        public Task<IVidToGIF> ConvertVidToGIF(string vidUrl)
+        public ValueTask<IVidToGIF> ConvertVidToGIF(string vidUrl)
         {
             if (string.IsNullOrWhiteSpace(vidUrl))
             {
@@ -49,7 +49,7 @@ namespace Imgur.API.Endpoints
         /// </summary>
         /// <param name="vidUrl">Video url to convert to GIF</param>
         /// <returns></returns>
-        private async Task<IVidToGIF> ConvertVidToGIFInternal(string vidUrl)
+        private async ValueTask<IVidToGIF> ConvertVidToGIFInternal(string vidUrl)
         {
             var prePoll = await CreatePollVidToGIFInternal(vidUrl);
             if (string.IsNullOrEmpty(prePoll.Ticket))
@@ -68,7 +68,7 @@ namespace Imgur.API.Endpoints
             }
             return null;
         }
-        private async Task<IVidToGIFPoll> CreatePollVidToGIFInternal(string vidUrl)
+        private async ValueTask<IVidToGIFPoll> CreatePollVidToGIFInternal(string vidUrl)
         {
             string url = "upload";
             using (var request = VidToGifRequestBuilder.ConvertVidToGIFRequest(url, vidUrl))

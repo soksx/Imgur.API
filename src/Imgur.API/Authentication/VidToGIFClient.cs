@@ -6,7 +6,7 @@ namespace Imgur.API.Authentication
     ///     Imgur API application credentials.
     ///     Register at https://api.imgur.com/oauth2/addclient
     /// </summary>
-    public class VidToGIFClient : ApiClientBase, IImgurClient
+    public class VidToGIFClient : ApiClient, IApiClient
     {
         /// <summary>
         ///     Initializes a new instance of the ImgurClient class.
@@ -26,30 +26,9 @@ namespace Imgur.API.Authentication
         }
 
         /// <summary>
-        ///     Initializes a new instance of the ImgurClient class.
-        /// </summary>
-        /// <param name="clientId">The Imgur app's ClientId. </param>
-        /// <param name="oAuth2Token">An OAuth2 Token used for actions against a user's account.</param>
-        public VidToGIFClient(string clientId, IOAuth2Token oAuth2Token)
-            : base(clientId, oAuth2Token)
-        {
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the ImgurClient class.
-        /// </summary>
-        /// <param name="clientId">The Imgur app's ClientId. </param>
-        /// <param name="clientSecret">The Imgur app's ClientSecret.</param>
-        /// <param name="oAuth2Token">An OAuth2 Token used for actions against a user's account.</param>
-        public VidToGIFClient(string clientId, string clientSecret, IOAuth2Token oAuth2Token)
-            : base(clientId, clientSecret, oAuth2Token)
-        {
-        }
-
-        /// <summary>
         ///     The Endpoint Url.
         ///     https://imgur.com/vidgif/
         /// </summary>
-        public override string EndpointUrl { get; } = "https://imgur.com/vidgif/";
+        public override string BaseAddress => "https://imgur.com/vidgif/"; 
     }
 }

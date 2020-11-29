@@ -17,14 +17,6 @@ namespace Imgur.API.Endpoints
         ///     Initializes a new instance of the ImageEndpoint class.
         /// </summary>
         /// <param name="apiClient">The type of client that will be used for authentication.</param>
-        public VidToGIFEndpoint(IApiClient apiClient) : base(apiClient)
-        {
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the ImageEndpoint class.
-        /// </summary>
-        /// <param name="apiClient">The type of client that will be used for authentication.</param>
         /// <param name="httpClient"> The class for sending HTTP requests and receiving HTTP responses from the endpoint methods.</param>
         public VidToGIFEndpoint(IApiClient apiClient, HttpClient httpClient) : base(apiClient, httpClient)
         {

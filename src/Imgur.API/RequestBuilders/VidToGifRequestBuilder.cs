@@ -3,7 +3,7 @@ using System.Net.Http;
 
 namespace Imgur.API.RequestBuilders
 {
-    internal class VidToGifRequestBuilder : RequestBuilderBase
+    internal static class VidToGifRequestBuilder
     {
         internal static HttpRequestMessage ConvertVidToGIFRequest(string url, string vidUrl)
         {

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Imgur.API.Authentication;
+using Imgur.API.Enums;
 using Imgur.API.Models;
 using Imgur.API.RequestBuilders;
 

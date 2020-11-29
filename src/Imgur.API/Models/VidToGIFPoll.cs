@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Imgur.API.Models
 {
@@ -10,12 +10,12 @@ namespace Imgur.API.Models
         /// <summary>
         /// Idk.
         /// </summary>
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public bool Code { get; set; }
         /// <summary>
         /// Id of Poll to wait the vid for conversion
         /// </summary>
-        [JsonProperty("ticket")]
+        [JsonPropertyName("ticket")]
         public string Ticket { get; set; }
     }
 }

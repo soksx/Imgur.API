@@ -2,24 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Damien Dennehy</Authors>
-    <Description>Imgur.API is a .NET implementation of Imgur's API. It supports Imgur's free and Mashape's commercial API endpoints.</Description>
-    <Copyright>Copyright © 2015-2018</Copyright>
-    <PackageLicenseUrl>https://github.com/DamienDennehy/Imgur.API/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>http://imgurapi.readthedocs.org/en/latest</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/DamienDennehy/Imgur.API/master/icon.png</PackageIconUrl>
-    <PackageTags>imgur.api imgur.net imgur api mashape</PackageTags>
-    <Version>1.0.0</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryUrl>https://github.com/DamienDennehy/Imgur.API</RepositoryUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>Imgur.API is a .NET implementation of Imgur's API.</Description>
+    <PackageTags>imgur;media;image;video;upload</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>Imgur.API.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\Imgur.API.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>Imgur.API.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <Content Include="..\..\icon.png" Link="icon.png" Pack="true" PackagePath="\" />
+    <Content Include="..\..\LICENSE" Link="LICENSE" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
 
 </Project>
